@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">
+        <ul class="menu">
+          <li class="active">
+            <a href="#" routerLink="/dashboard">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" routerLink="/burgers">
+              <i class="fas fa-hamburger"></i>
+              <span>Burgers</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" routerLink="/commandes-management">
+              <i class="fas fa-clipboard-list"></i>
+              <span>Commandes</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="logout">
+            <a>
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main--content">
+      <div class="header--wrapper">
+        <div class="header--title">
+          <span>Cinaye burger</span>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="user--info">
+          <div class="search--box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="search" />
+          </div>
+          <img src="" alt="" />
+        </div>
+      </div>
+
+      <div class="card--container">
+        <h3 class="main--title">Données en live</h3>
+        <div class="card--wrapper">
+          <div class="payment--card light-red" routerLink="/commandes-annuler">
+            <div class="card--header">
+              <div class="amount">
+                <h5>Annulées</h5>
+
+                <span class="amount-value">{{
+                  statistiques.commandesAnnulees
+                }}</span>
+              </div>
+              <i class="fas fa-ban icon red"></i>
+              
+            </div>
+            <span class="card--detail">**** **** ****</span>
+          </div>
+          <div
+            class="payment--card light-purple"
+            routerLink="/commandes-en-cours"
+          >
+            <div class="card--header">
+              <div class="amount">
+                <h5>En cours</h5>
+
+                <span class="amount-value">{{
+                  statistiques.commandesEnCours
+                }}</span>
+              </div>
+              <i class="fas fa-hourglass-half icon yellow"></i>
+
+            </div>
+            <span class="card--detail">**** **** ****</span>
+          </div>
+          <div
+            class="payment--card light-green"
+            routerLink="/commandes-valider"
+          >
+            <div class="card--header">
+              <div class="amount">
+                <h5>Validées</h5>
+
+                <span class="amount-value">{{
+                  statistiques.commandesValidees
+                }}</span>
+              </div>
+              <i class="fas fa-thumbs-up icon green dark-green"></i>
+
+            </div>
+            <span class="card--detail">**** **** ****</span>
+          </div>
+          <div class="payment--card light-blue">
+            <div class="card--header">
+              <div class="amount">
+                <h6>Recette journalière</h6>
+
+                <span class="amount-value"
+                  >{{ statistiques.recettesJournalieres }} FCFA</span
+                >
+              </div>
+              <i class="fas fa-chart-line icon dark-blue"></i>
+             
+            </div>
+            <span class="card--detail">**** **** ****</span>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="filter-section">
+        <h3 class="filter-title">Filtres</h3>
+        <form (ngSubmit)="applyFilters()" class="filter-form">
+          <div class="filter-group">
+            <label for="burger_id">Burger ID:</label>
+            <input
+              type="number"
+              id="burger_id"
+              [(ngModel)]="filters.burger_id"
+              name="burger_id"
+            />
+          </div>
+          <div class="filter-group">
+            <label for="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              [(ngModel)]="filters.date"
+              name="date"
+            />
+          </div>
+          <div class="filter-group">
+            <label for="status">Status:</label>
+            <select id="status" [(ngModel)]="filters.status" name="status">
+              <option value="">Tous</option>
+              <option value="en cours">En cours</option>
+              <option value="terminé">Terminé</option>
+              <option value="annulé">Annulé</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="client">Nom du client:</label>
+            <input
+              type="text"
+              id="client"
+              [(ngModel)]="filters.client"
+              name="client"
+            />
+          </div>
+          <button type="submit" class="filter-button">
+            Appliquer les filtres
+          </button>
+        </form>
+      </div>
+
+      <div class="tabular--wrapper">
+        <h3 class="main--title">Gestion des Commandes</h3>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Quantité</th>
+                <th>Prix Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let commande of commandes
+                    | paginate : { itemsPerPage: 4, currentPage: p }
+                "
+              >
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.nom }}</td>
+                <td>{{ commande.email }}</td>
+                <td>{{ commande.quantite }}</td>
+                <td>{{ commande.prix_total }}</td>
+                <td>{{ commande.status }}</td>
+                <td class="lesButtons">
+                  <button
+                    (click)="annulerCommande(commande.id)"
+                    *ngIf="commande.status === 'en cours'"
+                    class="btnAnnuler"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    (click)="terminerCommande(commande.id)"
+                    *ngIf="commande.status === 'en cours'"
+                    class="btnTerminer"
+                  >
+                    Terminer
+                  </button>
+                  <button
+                    (click)="payerCommande(commande.id)"
+                    *ngIf="commande.status === 'terminé'"
+                    class="btnPayer"
+                  >
+                    Payer
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination-container">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!-- <div *ngIf="burger">
+    <h3>Commande de {{ burger.nom }}</h3>
+    <p>Prix: {{ burger.prix | currency }}</p>
+  
+    <form [formGroup]="commandeForm" (ngSubmit)="passerCommande()">
+      <div>
+        <label for="nom">Nom:</label>
+        <input id="nom" formControlName="nom" />
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+      </div>
+  
+      <div>
+        <label for="quantite">Quantité:</label>
+        <input id="quantite" formControlName="quantite" type="number" />
+      </div>
+  
+      <div>
+        <label for="prix_total">Prix Total:</label>
+        <input id="prix_total" formControlName="prix_total" type="text" readonly />
+      </div>
+  
+      <button type="submit" [disabled]="commandeForm.invalid">Passer la commande</button>
+    </form>
+  </div>
+   -->
+
+
+   <div class="order-container" *ngIf="burger">
+    <div class="order-card">
+      <h2 class="order-title">{{ burger.nom }}</h2>
+      <p class="order-price">Prix: {{ burger.prix }} FCFA</p>
+    
+      <form [formGroup]="commandeForm" (ngSubmit)="passerCommande()" class="order-form">
+        <div class="form-group">
+          <label for="nom">Nom:</label>
+          <input id="nom" formControlName="nom" placeholder="Votre nom" />
+        </div>
+    
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input id="email" formControlName="email" type="email" placeholder="Votre email" />
+        </div>
+    
+        <div class="form-group">
+          <!-- <label for="quantite">Quantité:</label> -->
+          <input hidden id="quantite" formControlName="quantite" type="number" min="1" />
+        </div>
+    
+        <div class="form-group">
+          <label for="prix_total">Prix Total:</label>
+          <input id="prix_total" formControlName="prix_total" type="text" readonly />
+        </div>
+    
+        <button type="submit" [disabled]="commandeForm.invalid" class="submit-btn">
+          Passer la commande
+        </button>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,32 @@
+
+
+<div class="overlay"></div>
+<div class="form-container">
+  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+    <input id="id" type="text" hidden [(ngModel)]="burger.id" name="id" required>
+    <div class="mb-3">
+      <label for="nom" class="form-label">Nom</label>
+      <input type="text" [(ngModel)]="burger.nom" name="nom" class="form-control"  required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="prix" class="form-label">Prix</label>
+      <input type="number" [(ngModel)]="burger.prix" name="prix" class="form-control"  required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" (change)="onFileChange($event)"  class="form-control" >
+      <img *ngIf="imageUrl" [src]="imageUrl" alt="Image preview" class="mt-2" style="max-width: 100px;">
+    </div>
+  
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea [(ngModel)]="burger.description" name="description" class="form-control" ></textarea>
+    </div>
+  
+    <button type="submit" class="btn btn-secondary">Mettre à jour</button>
+  </form>
+  
+</div>

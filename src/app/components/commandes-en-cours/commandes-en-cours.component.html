@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <ul class="menu">
+                <li class="active">
+                    <a href="#" routerLink="/dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" routerLink="/burgers">
+                        <i class="fas fa-hamburger"></i>
+                        <span>Burgers</span>
+                    </a>
+                </li>
+              
+                <li>
+                    <a href="#" routerLink="/commandes-management">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Commandes</span>
+                    </a>
+                </li>
+               
+                <li>
+                    <a >
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a >
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <span>Cinaye burger</span>
+                <h2>Dashboard</h2>
+            </div>
+            <div class="user--info">
+                <div class="search--box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="search">
+                </div>
+                <img src="" alt="">
+            </div>
+        </div>
+
+        <div class="card--container">
+            <h3 class="main--title">Données commandes en live</h3>
+            <div class="card--wrapper">
+                <div class="payment--card light-red" routerLink="/commandes-en-cours">
+                    <div class="card--header">
+                        <div class="amount">
+                            <h5>En cours</h5>
+                            <span class="amount-value">{{ statistiques.commandesEnCours }}</span>
+                        </div>
+                        <i class="fas fa-hourglass-half icon yellow"></i>
+
+                    </div>
+                    <span class="card--detail">**** **** ****</span>
+                </div>
+                
+                <div class="payment--card light-green" routerLink="/commandes-valider">
+                    <div class="card--header">
+                        <div class="amount">
+                            <h5>Validées</h5>
+                            <span class="amount-value">{{ statistiques.commandesValidees }}</span>
+                        </div>
+                        <i class="fas fa-thumbs-up icon green dark-green"></i>
+
+                    </div>
+                    <span class="card--detail">**** **** **** </span>
+                </div>
+                <div class="payment--card light-purple" routerLink="/commandes-annuler">
+                    <div class="card--header">
+                        <div class="amount">
+                            <h5>Annulées</h5>
+                            <span class="amount-value">{{ statistiques.commandesAnnulees }}</span>
+                        </div>
+                        <i class="fas fa-ban icon red"></i>
+
+                    </div>
+                    <span class="card--detail">**** **** **** </span>
+                </div>
+                <div class="payment--card light-blue">
+                    <div class="card--header">
+                        <div class="amount">
+                            <h6>Recette journalière</h6>
+                            <span class="amount-value">{{ statistiques.recettesJournalieres }} FCFA</span>
+                        </div>
+                        <i class="fas fa-chart-line icon dark-blue"></i>
+
+                    </div>
+                    <span class="card--detail">**** **** ****</span>
+                </div>
+            </div>
+        </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title">Liste des commandes en cours</h3>
+            <div class="table-container">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Burger</th>
+                            <th>Nom du client</th>
+                            <th>Quantité</th>
+                            <th>Prix total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let commande of commandesEnCours | paginate : { itemsPerPage: 4, currentPage: p }">
+                            <td>{{ commande.id }}</td>
+                            <td>{{ commande.burger.nom }}</td>
+                            <td>{{ commande.nom }}</td>
+                            <td>{{ commande.quantite }}</td>
+                            <td>{{ commande.prix_total }}</td>
+                          </tr>
+                    </tbody>
+                </table>
+                <div class="pagination-container">
+                    <pagination-controls
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

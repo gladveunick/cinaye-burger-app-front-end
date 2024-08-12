@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+
+</head>
+<body>
+    <div class="small-container single-product">
+        <div class="row" *ngIf="burger">
+            <div class="col-2">
+                <!-- <img src="bg.jpg" width="100%" id="ProductImg"> -->
+                <img width="100%" *ngIf="burger.image" [src]="'http://localhost:8000/images/' + burger.image" alt="{{ burger.nom }}" />
+                <div class="small-img-row">
+                </div>
+            </div>
+            <div class="col-2">
+                <p>Home /Burgers</p>
+                <h1>{{ burger.nom }}</h1>
+                <h4>{{ burger.prix  }} fcfa</h4>
+                <!-- <select name="" id="">
+                    <option value="">select choice</option>
+                    <option value="">XXL</option>
+                    <option value="">XL</option>
+                    <option value="">M</option>
+                    <option value="">L</option>
+                </select> -->
+                <input type="number" value="1" readonly>
+
+                
+                <button (click)="commander()" class="btn">Commander</button>
+                <h3>Burger Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p>{{ burger.description }}</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+
+   .burger-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .burger-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .burger-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .burger-info {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .burger-info h2 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+  
+  .burger-description {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  
+  .burger-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  
+  .btn-primary {
+   
+    padding: 10px 45px;
+    background-color: #ffbe33;
+    color: #ffffff;
+    border-radius: 45px;
+    border: none;
+    
+  }
+  
+  .btn-primary:hover {
+    background-color:#ffbe33;
+    border-color: #ffbe33;
+  }
+  
+
+

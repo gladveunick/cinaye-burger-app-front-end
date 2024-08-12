@@ -1,0 +1,39 @@
+
+
+<div class="centered-container">
+    
+    <div class="form_container">
+        <i class="uil uil-times form_close" (click)="closeForm()"></i>
+        <div class="form signup_form">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <h2>Sign up</h2>
+                <div class="input_box">
+                    <input type="text" placeholder="Entrez votre nom" formControlName="nom" required>
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input_box">
+                    <input type="text" placeholder="Entrez votre prénom" formControlName="prenom" required>
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input_box">
+                    <input type="tel" placeholder="Entrez votre téléphone" formControlName="telephone" required>
+                    <i class="uil uil-phone"></i>
+                </div>
+                <div class="input_box">
+                    <input type="email" placeholder="Entrez votre email" formControlName="email" required>
+                    <i class="uil uil-envelope-alt email"></i>
+                </div>
+                <div class="input_box">
+                    <input [type]="passwordVisible ? 'text' : 'password'" placeholder="Créer votre mot de passe" formControlName="mot_de_passe" required>
+                    <i class="uil uil-lock password"></i>
+                    <i class="uil" [ngClass]="{'uil-eye': passwordVisible, 'uil-eye-slash': !passwordVisible}" (click)="togglePasswordVisibility()"></i>
+                </div>
+    
+                <button class="button" type="submit" [disabled]="!registerForm.valid">S'inscrire</button>
+    
+                <div class="login_signup">Vous avez déjà un compte ? <a (click)="goToLogin()">Se connecter</a></div>
+            </form>
+        </div>
+    </div>
+    
+  </div>
